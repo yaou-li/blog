@@ -1,0 +1,4 @@
+services:
+#    garlic_blog_login.example:
+#        class: GarlicBlog\LoginBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

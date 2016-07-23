@@ -1,3 +1,5 @@
-app:
-    resource: "@AppBundle/Controller/"
+garlic_blog_login:
+    resource: "@GarlicBlogLoginBundle/Controller/"
     type:     annotation
+    prefix:   /
+
