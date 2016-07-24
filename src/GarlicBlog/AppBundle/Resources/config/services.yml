@@ -1,0 +1,4 @@
+services:
+#    garlic_blog_app.example:
+#        class: GarlicBlog\AppBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
