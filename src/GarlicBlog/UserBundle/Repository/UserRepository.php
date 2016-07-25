@@ -1,5 +1,5 @@
 <?php 
-namespace GarlicBlog\LoginBundle\Repository;
+namespace GarlicBlog\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

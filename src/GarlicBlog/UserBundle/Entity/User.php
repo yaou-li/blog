@@ -1,6 +1,6 @@
 <?php
 
-namespace GarlicBlog\LoginBundle\Entity;
+namespace GarlicBlog\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="GarlicBlog\LoginBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="GarlicBlog\UserBundle\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
 {

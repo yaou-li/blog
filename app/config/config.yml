@@ -63,7 +63,7 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         mappings:
-            GarlicBlogLoginBundle:
+            GarlicBlogUserBundle:
                 type: annotation
 
 # Swiftmailer Configuration

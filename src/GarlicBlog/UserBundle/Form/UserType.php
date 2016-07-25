@@ -1,6 +1,6 @@
 <?php
 
-namespace GarlicBlog\LoginBundle\Form;
+namespace GarlicBlog\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +28,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'GarlicBlog\LoginBundle\Entity\User',
+            'data_class' => 'GarlicBlog\UserBundle\Entity\User',
         ));
     }
 }

@@ -2,7 +2,7 @@
 # http://symfony.com/doc/current/book/security.html
 security:
     encoders:
-        GarlicBlog\LoginBundle\Entity\User:
+        GarlicBlog\UserBundle\Entity\User:
             algorithm: bcrypt
             cost: 15
             
@@ -10,7 +10,7 @@ security:
     providers:
         our_db_provider:
             entity:
-                class: GarlicBlogLoginBundle:User
+                class: GarlicBlogUserBundle:User
                 property: username
                 
         in_memory:

@@ -1,6 +1,6 @@
 <?php
 
-namespace GarlicBlog\LoginBundle\Tests\Controller;
+namespace GarlicBlog\UserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

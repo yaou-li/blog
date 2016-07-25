@@ -1,9 +1,9 @@
 <?php
 
-namespace GarlicBlog\LoginBundle\Controller;
+namespace GarlicBlog\UserBundle\Controller;
 
-use GarlicBlog\LoginBundle\Form\UserType;
-use GarlicBlog\LoginBundle\Entity\User;
+use GarlicBlog\UserBundle\Form\UserType;
+use GarlicBlog\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +30,7 @@ class DefaultController extends Controller
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(
-            'GarlicBlogLoginBundle:Default:login.html.twig',
+            'GarlicBlogUserBundle:Default:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
@@ -69,7 +69,7 @@ class DefaultController extends Controller
         }
 
         return $this->render(
-            'GarlicBlogLoginBundle:Default:register.html.twig',
+            'GarlicBlogUserBundle:Default:register.html.twig',
             array('form' => $form->createView())
         );
     }
