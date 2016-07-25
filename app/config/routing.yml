@@ -3,7 +3,7 @@ garlic_blog_app:
     type:     annotation
     prefix:   /
 
-garlic_blog_login:
+garlic_blog_user:
     resource: "@GarlicBlogUserBundle/Controller/"
     type:     annotation
     prefix:   /

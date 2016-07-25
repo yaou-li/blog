@@ -15,9 +15,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $request->request->set('_username','amor89813');
-        $request->request->set('_password','343946724');
-//        
+
 //        print_r("--".$request->request->get('_username')."--\n");
 //        print_r("--".$request->request->get('_password')."--\n");
         
