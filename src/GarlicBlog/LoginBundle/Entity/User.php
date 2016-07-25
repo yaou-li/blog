@@ -3,26 +3,42 @@
 namespace GarlicBlog\LoginBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GarlicBlog\LoginBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="user_name", type="string", length=80, nullable=false)
+     * @ORM\Column(name="username", type="string", length=80, nullable=false)
      */
-    private $userName;
-
+    private $username;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=20, nullable=false)
+     * @ORM\Column(name="email", type="string", length=80, nullable=false)
+     */
+    private $email;
+    
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="text",nullable=false)
      */
     private $password;
 
@@ -31,7 +47,7 @@ class User
      *
      * @ORM\Column(name="last_login", type="datetime", nullable=true)
      */
-    private $lastLogin = 'CURRENT_TIMESTAMP';
+    private $lastLogin = null;
 
     /**
      * @var string
@@ -43,9 +59,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=10, nullable=false)
+     * @ORM\Column(name="roles", type="array", nullable=false)
      */
-    private $role;
+    private $roles = array('ROLE_USER');
 
     /**
      * @var integer
@@ -55,33 +71,79 @@ class User
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive = true;
 
 
 
     /**
-     * Set userName
+     * Set username
      *
-     * @param string $userName
+     * @param string $username
      *
      * @return User
      */
-    public function setUserName($userName)
+    public function setUserName($username)
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get userName
+     * Get username
      *
      * @return string
      */
     public function getUserName()
     {
-        return $this->userName;
+        return $this->username;
+    }
+    
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+    
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+    
     /**
      * Set password
      *
@@ -115,7 +177,7 @@ class User
      */
     public function setLastLogin($lastLogin)
     {
-        $this->lastLogin = $lastLogin;
+        $this->lastLogin = new \Datetime($lastLogin);
 
         return $this;
     }
@@ -157,25 +219,25 @@ class User
     /**
      * Set role
      *
-     * @param string $role
+     * @param string $roles
      *
      * @return User
      */
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * Get role
+     * Get roles
      *
      * @return string
      */
-    public function getRole()
+    public function getRoles()
     {
-        return $this->role;
+        return $this->roles;
     }
 
     /**
@@ -186,5 +248,33 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+    
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 }

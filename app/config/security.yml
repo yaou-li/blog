@@ -1,9 +1,18 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+    encoders:
+        GarlicBlog\LoginBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 15
+            
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
+        our_db_provider:
+            entity:
+                class: GarlicBlogLoginBundle:User
+                property: username
+                
         in_memory:
             memory: ~
 
@@ -13,14 +22,20 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        default:
             anonymous: ~
+            http_basic: ~
+            provider: our_db_provider
+            
             # activate different ways to authenticate
-
-            # http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
             form_login:
                 login_path: login
                 check_path: login
                 default_target_path: /
+            
+    access_control:
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/, roles: ROLE_USER }
