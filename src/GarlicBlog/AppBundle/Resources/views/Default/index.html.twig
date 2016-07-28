@@ -1,7 +1,78 @@
-{% extends 'base.html.twig' %}
+{% extends 'GarlicBlogAppBundle::layout.html.twig' %}
 
-{% block title %}Garlic Blog{% endblock %}
-
-{% block body %}
-    hello yaou!
+{% block content %}
+    <div class="row-fluid">
+    
+        <div class="col-md-3" id="right_nav">
+            <div class="panel panel-default">
+                
+                <div class="panel-heading">
+                <h3 class="panel-title">Sort by:</h3>
+                </div>
+                
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <span class="badge">14</span>
+                    Cras justo odio
+                  </li>
+                  <li class="list-group-item active">
+                    <span class="badge">12</span>
+                    Cras justo odio
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">12</span>
+                    Cras justo odio
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">12</span>
+                    Cras justo odio
+                  </li>
+                </ul>
+              
+            </div>
+        </div>
+        
+        <div class="col-md-6" id="blog_list">
+            <ul class="list-group">
+                  <li class="list-group-item">
+                    <h4 class="list-group-item-heading">Title of the article</h4>
+                    <div class="article-content-divider"></div>
+                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
+                    <div class="article-content-divider"></div>
+                  </li>
+                  <div class="article-divider"></div>
+                  <li class="list-group-item">
+                    <h4 class="list-group-item-heading">Title of the article</h4>
+                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
+                  </li>
+                  <li class="list-group-item">
+                    <h4 class="list-group-item-heading">Title of the article</h4>
+                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
+                  </li>
+                  <li class="list-group-item">
+                    <h4 class="list-group-item-heading">Title of the article</h4>
+                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
+                  </li>
+            </ul>
+        </div>
+        
+        <div class="col-md-3" id="friends_list">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Recent: <span class="badge" style="float:right;">14</span></h3>
+              </div>
+              <div class="panel-body">
+                Panel content
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">Followed: <span class="badge" style="float:right;">14</span></h3>
+              </div>
+              <div class="panel-body">
+                Panel content
+              </div>
+            </div>
+        </div>
+        
+        
+    </div>
 {% endblock %}
