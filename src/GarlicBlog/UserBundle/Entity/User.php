@@ -25,6 +25,13 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
+     * @ORM\Column(name="nickname", type="string", length=80, nullable=true)
+     */
+    private $nickname;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=80, nullable=false)
      */
     private $email;
@@ -41,7 +48,14 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="password", type="text",nullable=false)
      */
     private $password;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="background", type="text",nullable=true)
+     */
+    private $background;
+    
     /**
      * @var \DateTime
      *
@@ -101,6 +115,30 @@ class User implements UserInterface, \Serializable
     public function getUserName()
     {
         return $this->username;
+    }
+    
+    /**
+     * Set nickname
+     *
+     * @param string $nickname
+     *
+     * @return User
+     */
+    public function setNickName($nickname)
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    /**
+     * Get nickname
+     *
+     * @return string
+     */
+    public function getNickName()
+    {
+        return $this->nickname;
     }
     
     /**
@@ -166,6 +204,30 @@ class User implements UserInterface, \Serializable
     public function getPassword()
     {
         return $this->password;
+    }
+    
+    /**
+     * Set background
+     *
+     * @param string $background
+     *
+     * @return User
+     */
+    public function setBackGround($background)
+    {
+        $this->background = $background;
+
+        return $this;
+    }
+
+    /**
+     * Get background
+     *
+     * @return string
+     */
+    public function getBackGround()
+    {
+        return $this->background;
     }
 
     /**

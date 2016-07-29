@@ -10,7 +10,7 @@ class ArticleController extends Controller
     /**
      * @Route("/articles/{id}", name="articles")
      */
-    public function articleAction()
+    public function listAction()
     {
         return $this->render('GarlicBlogAppBundle:Articles:article.html.twig');
     }
