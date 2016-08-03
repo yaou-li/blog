@@ -71,4 +71,25 @@ class DefaultController extends Controller
             array('form' => $form->createView())
         );
     }
+    
+    /**
+     * @Route("/myProfile", name="user_profile")
+     */
+    public function profileAction(Request $request)
+    {
+        
+        $securityContext = $this->container->get('security.authorization_checker');
+        if (!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('homepage');
+        }
+        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        return $this->render(
+            'GarlicBlogUserBundle:Default:profile.html.twig',
+            array('userName' => $user->getUserName())
+        );
+    }
+    
+    
 }
