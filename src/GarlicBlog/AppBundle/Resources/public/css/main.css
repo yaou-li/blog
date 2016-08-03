@@ -1,4 +1,5 @@
 body {
+    
     background-color: #F2F2F2;
 }
 
@@ -9,7 +10,7 @@ body {
 .article-divider {
     margin-top:10px
 }
-.article-content-divider {
+.content-divider {
   height: 1px;
   width:100%;
   display:block; /*for use on default inline elements like span */ 

@@ -12,6 +12,16 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('GarlicBlogAppBundle:Default:index.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->getId();
+        $userName = $user->getUserName();
+        return $this->render(
+            'GarlicBlogAppBundle:Default:index.html.twig',
+            array(
+                // last username entered by the user
+                'userId'    => $userId,
+                'userName'  => $userName,
+            )
+        );
     }
 }
