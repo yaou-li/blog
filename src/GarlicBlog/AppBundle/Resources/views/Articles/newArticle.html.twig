@@ -5,49 +5,51 @@
         <div class="col-md-8 col-md-offset-2" id="article_content">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <input type="text" class="form-control" placeholder="Article Title">
-                    <div class="content-divider"></div>
-                    <textarea type="textarea" class="form-control" rows="20"></textarea>
-                    <div class="content-divider"></div>
-                    <div class="article-footer"></div>
-                    <div class="content-divider"></div>
-                    <div class="form-group">
+                    <form action="/addArticle" method="post">
+                        <input name="authorid" type="hidden" value={{ userId }}>
+                        <input name="title" type="text" class="form-control" placeholder="Article Title">
+                        <div class="content-divider"></div>
+                        <textarea name="content" type="textarea" class="form-control" rows="20"></textarea>
+                        <div class="content-divider"></div>
+                        <div class="article-footer"></div>
+                        <div class="content-divider"></div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="category_select" class="pull-right">Categories:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <select name="category" class="form-control" id="category_select">
+                                        {% for category in categories %}
+                                            <option value = {{ category.id }}>{{ category.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-divider"></div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="privacy_select" class="pull-right">Privacy:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <select name="privacy" class="form-control" id="privacy_select">
+                                        <option>Public</option>
+                                        <option>For all your friends</option>
+                                        <option>Only for yourself</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-divider"></div>
                         <div class="row">
-                            <div class="col-md-2">
-                                <label for="category_select" class="pull-right">Categories:</label>
-                            </div>
-                            <div class="col-md-10">
-                                <select class="form-control" id="category_select">
-                                    <option>Category1</option>
-                                    <option>Category2</option>
-                                    <option>Category3</option>
-                                    <option>Category4</option>
-                                </select>
+                            <div class='col-md-10 col-md-offset-2'>
+                                <button type="submit" class="btn btn-primary pull-right">Post now</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="content-divider"></div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label for="privacy_select" class="pull-right">Privacy:</label>
-                            </div>
-                            <div class="col-md-10">
-                                <select class="form-control" id="privacy_select">
-                                    <option>Public</option>
-                                    <option>For all your friends</option>
-                                    <option>Only for yourself</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-divider"></div>
-                    <div class="row">
-                        <div class='col-md-10 col-md-offset-2'>
-                            <button type="submit" class="btn btn-primary pull-right">Post now</button>
-                        </div>
-                    </div>
                     
+                    </form>
                 </li>
             </ul>
         </div>

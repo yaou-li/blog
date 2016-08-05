@@ -59,15 +59,22 @@ class Article
      *
      * @ORM\Column(name="readnum", type="integer", nullable=true)
      */
-    private $readnum;
+    private $readnum = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="likenum", type="integer", nullable=true)
      */
-    private $likenum;
-
+    private $likenum = 0;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="privacy", type="string", length=10, nullable=false)
+     */
+    private $privacy;
+    
     /**
      * @var integer
      *
@@ -269,6 +276,30 @@ class Article
     public function getLikenum()
     {
         return $this->likenum;
+    }
+    
+    /**
+     * Set privacy
+     *
+     * @param integer $privacy
+     *
+     * @return Article
+     */
+    public function setPrivacy($privacy)
+    {
+        $this->privacy = $privacy;
+
+        return $this;
+    }
+
+    /**
+     * Get privacy
+     *
+     * @return string
+     */
+    public function getPrivacy()
+    {
+        return $this->privacy;
     }
 
     /**
