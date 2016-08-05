@@ -18,3 +18,10 @@ body {
   overflow: hidden;
   background-color: #e5e5e5;
 }
+#add_new_article:hover {
+    cursor: pointer;
+}
+#glyphicon_message {
+    margin-left: 2px;
+    margin-right: 10px;
+}

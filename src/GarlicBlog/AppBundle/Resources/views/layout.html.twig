@@ -5,9 +5,9 @@
 {% block stylesheets %}
     
     {% stylesheets 
-        '@GarlicBlogAppBundle/Resources/public/css/bootstrap.min.css' 
+        '@bootstrap_css' 
         '@GarlicBlogAppBundle/Resources/public/css/main.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
     {% endstylesheets %}
     
     {% block extraStylesheets %}{% endblock %}
@@ -33,9 +33,8 @@
                   <button type="submit" class="btn btn-default" style="margin-left:5px">Submit</button>
                 </form>
             </div>
-            
+    
             <div class="col-md-2">
-                
                     {% if userName is defined %}
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -71,8 +70,9 @@
 {% block javascripts %}
     
     {% javascripts
-        '@GarlicBlogAppBundle/Resources/public/js/jquery-3.1.0.min.js'
-        '@GarlicBlogAppBundle/Resources/public/js/bootstrap.min.js' %}
+        '@jquery'
+        '@bootstrap_js' 
+        '@GarlicBlogAppBundle/Resources/public/js/main_handler.js' combine=true %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     
