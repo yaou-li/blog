@@ -69,17 +69,23 @@ class ArticleController extends Controller
     /**
      * @Route("/myArticles", name="my_articles")
      */
-    public function myArticlesAction()
+    public function myArticlesAction(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->getId();
         $userName = $user->getUserName();
+        
+        $sortBy = $request->request->get('sortBy');
+        $articleRepo = $this->getDoctrine()->getRepository('GarlicBlogAppBundle:Article');
+        $articles = $articleRepo->orderByTime();
+        
         return $this->render(
             'GarlicBlogAppBundle:Default:index.html.twig',
             array(
                 // last username entered by the user
                 'userId'    => $userId,
                 'userName'  => $userName,
+                'articles' => $articles
             )
         );
     }

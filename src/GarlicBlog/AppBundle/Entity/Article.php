@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Article
  *
  * @ORM\Table(name="article", indexes={@ORM\Index(name="article_title", columns={"title"}), @ORM\Index(name="authorid", columns={"authorid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GarlicBlog\AppBundle\Repository\ArticleRepository")
  */
 class Article
 {

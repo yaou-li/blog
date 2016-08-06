@@ -3,7 +3,7 @@
 {% block content %}
     <div class="row-fluid">
     
-        <div class="col-md-3" id="right_nav">
+        <div class="col-md-3" id="left_nav">
             <div class="panel panel-default">
                 
                 <div class="panel-heading">
@@ -52,110 +52,56 @@
                   </li>
                   <div class="article-divider"></div>
                   
-                  <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Title of the article</h4>
+                  {% for article in articles %}
+                      <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="row-fluid">
+                                    <img src="https://img3.doubanio.com/icon/u3527682-3.jpg"/>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='row'>
+                                    <b>{{ article.username }}</b>
+                                </div>
+                                <div class='row'>
+                                    <p>Posted {{ article.posttime | date('Y-m-d H:i:s') }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="pull-right">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                </div>                            
+                            </div>
                         </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="author col-md-offset-3">
-                            <p> --Yaou </p>
-                        </div>
-                        <div class="pull-right">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            <span id="glyphicon_message">Favorite</span>
-                        </div>
-                        <div class=" pull-right">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            <span id="glyphicon_message">12345</span>
-                        </div>
-                    </div>
-                    
-                    <div class="content-divider"></div>
-                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
-                    <div class="content-divider"></div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p>
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                <span id="post_message">Comment</span>
-                            </p>
-                        </div>
-                        
-                    </div>
-                  </li>
-                  <div class="article-divider"></div>
-                  
-                  <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Title of the article</h4>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="author col-md-offset-3">
-                            <p> --Yaou </p>
-                        </div>
-                        <div class="pull-right">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            <span id="glyphicon_message">Favorite</span>
-                        </div>
-                        <div class=" pull-right">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            <span id="glyphicon_message">12345</span>
-                        </div>
-                    </div>
-                    
-                    <div class="content-divider"></div>
-                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
-                    <div class="content-divider"></div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p>
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                <span id="post_message">Comment</span>
-                            </p>
+                        <br/>
+                        <div class="row-fluid">
+                            <h3>{{ article.title }}</h3>
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                <span id="glyphicon_message">{{ article.likenum }}</span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span id="glyphicon_message">{{ article.readnum }}</span>
+                            </div>
+                            
                         </div>
                         
-                    </div>
-                  </li>
-                  <div class="article-divider"></div>
-                  
-                  <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Title of the article</h4>
+                        <div class="content-divider"></div>
+                        <p class="list-group-item-text" style="word-wrap: break-word;">{{ article.content }}</p>
+                        <div class="content-divider"></div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    <span id="post_message">Comment</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="author col-md-offset-3">
-                            <p> --Yaou </p>
-                        </div>
-                        <div class="pull-right">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            <span id="glyphicon_message">Favorite</span>
-                        </div>
-                        <div class=" pull-right">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            <span id="glyphicon_message">12345</span>
-                        </div>
-                    </div>
-                    
-                    <div class="content-divider"></div>
-                    <p class="list-group-item-text" style="word-wrap: break-word;">blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal</p>
-                    <div class="content-divider"></div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p>
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                <span id="post_message">Comment</span>
-                            </p>
-                        </div>
-                        
-                    </div>
-                  </li>
-                  <div class="article-divider"></div>
+                      </li>
+                      <div class="article-divider"></div>
+                    {% endfor %}
             </ul>
         </div>
         
