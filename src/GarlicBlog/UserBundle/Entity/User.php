@@ -52,6 +52,13 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
+     * @ORM\Column(name="avatar", type="text",nullable=true)
+     */
+    private $avatar;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="background", type="text",nullable=true)
      */
     private $background;
@@ -228,6 +235,30 @@ class User implements UserInterface, \Serializable
     public function getBackGround()
     {
         return $this->background;
+    }
+    
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 
     /**

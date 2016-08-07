@@ -7,6 +7,9 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    avatar_folder: '%kernel.root_dir%/../web/avatars'
+    default_background_color : '#F2F2F2'
+    default_avatar: 'default.png'
 
 assetic:
     debug:          "%kernel.debug%"
