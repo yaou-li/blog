@@ -13,22 +13,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userId = $user->getId();
-        $userName = $user->getUserName();
-        
         $sortBy = $request->request->get('sortBy');
         $articleRepo = $this->getDoctrine()->getRepository('GarlicBlogAppBundle:Article');
         $articles = $articleRepo->orderByTime();
+        $params = array('articles' => $articles);
         
-        return $this->render(
-            'GarlicBlogAppBundle:Default:index.html.twig',
-            array(
-                // last username entered by the user
-                'userId'    => $userId,
-                'userName'  => $userName,
-                'articles' => $articles
-            )
-        );
+        // if is already logged in
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $params['userId'] = $user->getId();
+            $params['userName'] = $user->getUserName();
+        }
+        
+        return $this->render('GarlicBlogAppBundle:Default:index.html.twig', $params);
     }
 }

@@ -8,3 +8,5 @@ garlic_blog_user:
     type:     annotation
     prefix:   /
 
+logout:
+    path: /logout

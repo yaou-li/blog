@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    
+    {% stylesheets 
+        '@bootstrap_css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+    {% endstylesheets %}
+    
+    {% block extraStylesheets %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    
+    {% javascripts
+        '@jquery'
+        '@bootstrap_js' combine=true %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    {% block extraJavascripts %}{% endblock %}
+    
+{% endblock %}

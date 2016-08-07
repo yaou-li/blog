@@ -1,19 +1,68 @@
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+{% extends 'GarlicBlogUserBundle::base.html.twig' %}
 
-<form action="{{ path('login') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+{% block extraStylesheets %}
+    
+    {% stylesheets 
+        '@GarlicBlogUserBundle/Resources/public/css/login.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+    {% endstylesheets %}
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+{% endblock %}
 
-    {#
-        If you want to control the URL the user
-        is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
-
-    <button type="submit">login</button>
-</form>
+{% block body %}
+    <div class="row-fluid">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1> Garlic Blog </h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        <br>
+                            <form action="{{ path('login') }}" method="post">
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>                          
+                                    <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}" placeholder="Username"/>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                    </span>                            
+                                    <input type="password" class="form-control" id="password" name="_password" placeholder="Password"/>
+                                </div>
+                                <br>
+                                {#
+                                    If you want to control the URL the user
+                                    is redirected to on success (more details below)
+                                    <input type="hidden" name="_target_path" value="/account" />
+                                #}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary pull-right">Login</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            
+                            {% if error %}
+                                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            <br>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

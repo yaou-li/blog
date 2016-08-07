@@ -42,18 +42,20 @@
         
         <div class="col-md-6" id="blog_list">
             <ul class="list-group">
-                  <li class="list-group-item" id="add_new_article">
+                {% if userId is defined %}
+                    <li class="list-group-item" id="add_new_article">
                       <div class="row-fluid">
                         <h3>
                             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                             <span id="glyphicon_message">Write something today?</span>
                         </h3>
                       </div>
-                  </li>
-                  <div class="article-divider"></div>
-                  
-                  {% for article in articles %}
-                      <li class="list-group-item">
+                    </li>
+                    <div class="article-divider"></div>
+                {% endif %}
+                
+                {% for article in articles %}
+                    <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="row-fluid">
@@ -101,7 +103,7 @@
                         </div>
                       </li>
                       <div class="article-divider"></div>
-                    {% endfor %}
+                {% endfor %}
             </ul>
         </div>
         
