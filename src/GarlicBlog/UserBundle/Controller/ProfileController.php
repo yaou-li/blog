@@ -57,8 +57,10 @@ class ProfileController extends Controller
         
         //avatar
         $file = $request->files->get('avatar');
-        $fileName = $userId.".".$file->guessExtension();
-        $user->setAvatar($fileName);
+        if (!empty($file)) {
+            $fileName = $userId.".".$file->guessExtension();
+            $user->setAvatar($fileName);
+        }
         
         //nickname, email
         $nickname = $request->request->get('nickname');
@@ -84,8 +86,11 @@ class ProfileController extends Controller
         $em->persist($user);
         $em->flush();
         
-        //move the avatar to web directory
-        $file->move($this->getParameter('avatar_folder'),$fileName);
+        //move the uploaded avatar to web folder.
+        if (!empty($file) && !empty($fileName)) {
+            $file->move($this->getParameter('avatar_folder'),$fileName);
+        }
+        
         return $this->redirectToRoute('user_profile');
     }
     
