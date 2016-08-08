@@ -55,11 +55,19 @@
                 {% endif %}
                 
                 {% for article in articles %}
-                    <li class="list-group-item">
+                    <li class="list-group-item list_article" 
+                        id = {{"article_" ~ article.id}} 
+                        data-article-id = {{ article.id }}
+                        data-author-id = {{ article.authorid }}>
+                        
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="row-fluid">
-                                    <img src="https://img3.doubanio.com/icon/u3527682-3.jpg"/>
+                                    {% if article.author_avatar is defined and article.author_avatar is not empty %}
+                                        <img src={{ asset('avatars/' ~ article.author_avatar) }} style="width:48px;height:48px"/>
+                                    {% else %}
+                                        <img src={{ asset('avatars/' ~ default_avatar) }} style="width:48px;height:48px"/>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -71,11 +79,18 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <div class="pull-right">
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                </div>                            
+                                {% if article.authorid == userId %}
+                                    <div class="pull-right icon_delete">
+                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                    </div>
+                                {% else %}
+                                    <div class="pull-right icon_favorite">
+                                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
+                        
                         <br/>
                         <div class="row-fluid">
                             <h3>{{ article.title }}</h3>
@@ -91,7 +106,7 @@
                         </div>
                         
                         <div class="content-divider"></div>
-                        <p class="list-group-item-text" style="word-wrap: break-word;">{{ article.content }}</p>
+                        <p class="list-group-item-text" style="word-wrap: break-word;">{{ article.intro }}</p>
                         <div class="content-divider"></div>
                         <div class="row">
                             <div class="col-md-3">

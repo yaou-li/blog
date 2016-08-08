@@ -24,7 +24,10 @@ class DefaultController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $params['userId'] = $user->getId();
             $params['userName'] = $user->getUserName();
+            
         }
+        
+        $params['default_avatar'] = $this->getParameter('default_avatar');
         
         return $this->render('GarlicBlogAppBundle:Default:index.html.twig', $params);
     }

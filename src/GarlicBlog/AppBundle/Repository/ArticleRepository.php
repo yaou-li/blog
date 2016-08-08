@@ -11,7 +11,7 @@ class ArticleRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 "SELECT 
-                    a.id, a.title, a.authorid, u.username,u.nickname, a.posttime, a.categoryids, a.intro, a.content, a.readnum, a.likenum, a.privacy
+                    a.id, a.title, a.authorid, u.username,u.nickname, u.avatar as author_avatar, a.posttime, a.categoryids, a.intro, a.content, a.readnum, a.likenum, a.privacy
                  FROM 
                     GarlicBlogAppBundle:Article a 
                  LEFT JOIN 
@@ -20,6 +20,24 @@ class ArticleRepository extends EntityRepository
                     a.authorid = u.id
                  ORDER BY 
                     a.posttime DESC"
+            )
+            ->getResult();
+    }
+    
+    public function findArticleById($id) 
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT 
+                    a.id, a.title, a.authorid, u.username,u.nickname, u.avatar as author_avatar, a.posttime, a.categoryids, a.intro, a.content, a.readnum, a.likenum, a.privacy
+                 FROM 
+                    GarlicBlogAppBundle:Article a 
+                 JOIN 
+                    GarlicBlogUserBundle:User u 
+                 WHERE
+                    a.authorid = u.id
+                 AND
+                    a.id = $id"
             )
             ->getResult();
     }

@@ -5,22 +5,60 @@
     
         <div class="col-md-9" id="article_content">
             <ul class="list-group">
-                <li class="list-group-item">
-                    <h2 class="list-group-item-heading">Title of the article</h2>
+                <li class="list-group-item list_article" 
+                        id = {{"article_" ~ article.id}} 
+                        data-article-id = {{ article.id }}
+                        data-author-id = {{ article.authorid }}>
+                    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="row-fluid">
+                                {% if article.author_avatar is defined and article.author_avatar is not empty %}
+                                    <img src={{ asset('avatars/' ~ article.author_avatar) }} style="width:64px;height:64px"/>
+                                {% else %}
+                                    <img src={{ asset('avatars/' ~ default_avatar) }} style="width:64px;height:64px"/>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class='row'>
+                                <b>{{ article.username }}</b>
+                            </div>
+                            <div class='row'>
+                                <p>Posted {{ article.posttime | date('Y-m-d H:i:s') }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            {% if article.authorid == userId %}
+                                <div class="pull-right icon_delete">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                </div>
+                            {% else %}
+                                <div class="pull-right icon_favorite">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row-fluid">
+                            <h2 class="list-group-item-heading">{{ article.title }}</h2>
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                <span id="glyphicon_message">{{ article.likenum }}</span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <span id="glyphicon_message">{{ article.readnum }}</span>
+                            </div>
+                    </div>
                     <div class="content-divider"></div>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <p>blablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbalblablablablbal<p>
-                    <div class="content-divider"></div>
-                    <div class="article-footer"></div>
+                    <br>
+                    <div class="row-fluid">
+                        <p class="list-group-item-text" style="word-wrap: break-word;">{{ article.content }}</p>
+                    </div>
+                    <br>
                     <div class="content-divider"></div>
                     <div class="comments">
                         <div class="row">
@@ -44,13 +82,12 @@
                     <div class="content-divider"></div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="list-group-item-heading">Add Comments</p>
-                        </div>
-                        <div class="col-md-3">
-                            <p class="list-group-item-heading">Add To Favorite</p>
+                            <p>
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                <span id="post_message">Comment</span>
+                            </p>
                         </div>
                     </div>
-                    
                 </li>
             </ul>
         </div>

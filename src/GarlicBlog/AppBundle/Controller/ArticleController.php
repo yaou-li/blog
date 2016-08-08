@@ -85,7 +85,8 @@ class ArticleController extends Controller
                 // last username entered by the user
                 'userId'    => $userId,
                 'userName'  => $userName,
-                'articles' => $articles
+                'articles' => $articles,
+                'default_avatar' => $this->getParameter('default_avatar')            
             )
         );
     }
@@ -93,8 +94,22 @@ class ArticleController extends Controller
     /**
      * @Route("/articles/{id}", name="single_article")
      */
-    public function singleArticleAction()
+    public function singleArticleAction($id)
     {
-        return $this->render('GarlicBlogAppBundle:Articles:article.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->getId();
+        $userName = $user->getUserName();
+        $articleRepo = $this->getDoctrine()->getRepository('GarlicBlogAppBundle:Article');
+        $article = $articleRepo->findArticleById($id);
+        
+        return $this->render(
+                'GarlicBlogAppBundle:Articles:article.html.twig',
+                array (
+                    'userId'    => $userId,
+                    'userName'  => $userName,
+                    'article' => $article[0],
+                    'default_avatar' => $this->getParameter('default_avatar')
+                )
+        );
     }
 }
