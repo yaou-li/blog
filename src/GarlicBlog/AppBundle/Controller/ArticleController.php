@@ -96,20 +96,20 @@ class ArticleController extends Controller
      */
     public function singleArticleAction($id)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userId = $user->getId();
-        $userName = $user->getUserName();
         $articleRepo = $this->getDoctrine()->getRepository('GarlicBlogAppBundle:Article');
         $article = $articleRepo->findArticleById($id);
+        $params = array('article' => $article[0]);
         
-        return $this->render(
-                'GarlicBlogAppBundle:Articles:article.html.twig',
-                array (
-                    'userId'    => $userId,
-                    'userName'  => $userName,
-                    'article' => $article[0],
-                    'default_avatar' => $this->getParameter('default_avatar')
-                )
-        );
+        // if is already logged in
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $params['userId'] = $user->getId();
+            $params['userName'] = $user->getUserName();
+        }
+        
+        $params['default_avatar'] = $this->getParameter('default_avatar');
+        
+        return $this->render('GarlicBlogAppBundle:Articles:article.html.twig', $params);
     }
 }

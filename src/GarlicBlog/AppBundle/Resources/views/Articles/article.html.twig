@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            {% if article.authorid == userId %}
+                            {% if userId is defined and article.authorid == userId %}
                                 <div class="pull-right icon_delete">
                                     <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                                 </div>
