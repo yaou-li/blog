@@ -8,7 +8,11 @@
                 <li class="list-group-item list_article" 
                         id = {{"article_" ~ article.id}} 
                         data-article-id = {{ article.id }}
-                        data-author-id = {{ article.authorid }}>
+                        data-author-id = {{ article.authorid }}
+                        {% if userId is defined %}
+                            data-user-id = {{ userId }}
+                        {% endif %}
+                >
                     
                     <div class="row">
                         <div class="col-md-2">
