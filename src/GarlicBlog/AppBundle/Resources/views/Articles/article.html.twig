@@ -33,9 +33,13 @@
                                 <div class="pull-right icon_delete">
                                     <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                                 </div>
+                            {% elseif favorites is defined and article.id in favorites %}
+                                <div class="pull-right">
+                                    <span class="glyphicon glyphicon-star icon_favorite" aria-hidden="true"></span>
+                                </div>
                             {% else %}
-                                <div class="pull-right icon_favorite">
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <div class="pull-right">
+                                    <span class="glyphicon glyphicon-star-empty icon_favorite" aria-hidden="true"></span>
                                 </div>
                             {% endif %}
                         </div>

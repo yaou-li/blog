@@ -58,7 +58,11 @@
                     <li class="list-group-item list_article" 
                         id = {{"article_" ~ article.id}} 
                         data-article-id = {{ article.id }}
-                        data-author-id = {{ article.authorid }}>
+                        data-author-id = {{ article.authorid }}
+                        {% if userId is defined %}
+                            data-user-id = {{ userId }}
+                        {% endif %}
+                    >
                         
                         <div class="row">
                             <div class="col-md-2">
@@ -72,7 +76,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class='row'>
-                                    <b>{{ article.username }}</b>
+                                    <b class='author_article'>{{ article.username }}</b>
                                 </div>
                                 <div class='row'>
                                     <p>Posted {{ article.posttime | date('Y-m-d H:i:s') }}</p>
@@ -80,12 +84,16 @@
                             </div>
                             <div class="col-md-2">
                                 {% if userId is defined and article.authorid == userId %}
-                                    <div class="pull-right icon_delete">
-                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                    <div class="pull-right">
+                                        <span class="glyphicon glyphicon-remove-circle icon_delete" aria-hidden="true"></span>
+                                    </div>
+                                {% elseif favorites is defined and article.id in favorites %}
+                                    <div class="pull-right">
+                                        <span class="glyphicon glyphicon-star icon_favorite" aria-hidden="true"></span>
                                     </div>
                                 {% else %}
-                                    <div class="pull-right icon_favorite">
-                                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <div class="pull-right">
+                                        <span class="glyphicon glyphicon-star-empty icon_favorite" aria-hidden="true"></span>
                                     </div>
                                 {% endif %}
                             </div>
@@ -93,8 +101,8 @@
                         
                         <br/>
                         <div class="row-fluid">
-                            <h3>{{ article.title }}</h3>
-                            <div class="pull-right">
+                            <h2 class="list-group-item-heading title_article">{{ article.title }}</h2>
+                            <div class="pull-right icon_like">
                                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                                 <span id="glyphicon_message">{{ article.likenum }}</span>
                             </div>

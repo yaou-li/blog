@@ -41,4 +41,18 @@ class ArticleRepository extends EntityRepository
             )
             ->getResult();
     }
+    
+    public function addReadNum($id)
+    {
+        $query = $this->getEntityManager()
+                      ->createQuery(
+                            "UPDATE 
+                                GarlicBlogAppBundle:Article a
+                             SET 
+                                a.readnum = a.readnum + 1
+                             WHERE
+                                a.id = $id"
+                        );
+        $query->execute();
+    }
 }

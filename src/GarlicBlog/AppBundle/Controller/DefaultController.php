@@ -18,6 +18,7 @@ class DefaultController extends Controller
         $articles = $articleRepo->orderByTime();
         $params = array('articles' => $articles);
         
+        
         // if is already logged in
         $securityContext = $this->container->get('security.authorization_checker');
         if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -25,6 +26,11 @@ class DefaultController extends Controller
             $params['userId'] = $user->getId();
             $params['userName'] = $user->getUserName();
             
+            $favoriteRepo = $this->getDoctrine()->getRepository('GarlicBlogAppBundle:Favorite');
+            $favorites = $favoriteRepo->getFavoriteByUserId($user->getId());
+            if (!empty($favorites)) {
+                $params['favorites'] = $favorites[0];
+            }
         }
         
         $params['default_avatar'] = $this->getParameter('default_avatar');

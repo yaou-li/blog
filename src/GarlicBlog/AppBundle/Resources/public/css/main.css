@@ -7,6 +7,14 @@ body {
     min-height: 800px;
 }
 
+.title_article:hover,
+.author_article:hover,
+.icon_delete:hover,
+.icon_favorite:hover,
+.icon_like:hover {
+    cursor: pointer;
+}
+
 .article-divider {
     margin-top:10px
 }
